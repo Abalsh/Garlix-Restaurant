@@ -22,7 +22,7 @@ public class ItemController {
     @PatchMapping("/{id}")
     public Item modifyItem(@PathVariable(value = "id") Long id, @Valid @RequestBody Item itemDetails) {
         Item item = itemRepository.findById(id)
-                .orElseThrow(() -> new ItemNotFoundException("Person", "id", id));
+                .orElseThrow(() -> new ItemNotFoundException("Item", "id", id));
 
         item.setName(itemDetails.getName());
         item.setPrice(itemDetails.getPrice());
