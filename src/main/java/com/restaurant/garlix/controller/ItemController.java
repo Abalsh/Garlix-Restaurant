@@ -4,6 +4,7 @@ import com.restaurant.garlix.entity.Item;
 import com.restaurant.garlix.exception.ItemNotFoundException;
 import com.restaurant.garlix.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -22,7 +23,7 @@ public class ItemController {
     @PatchMapping("/{id}")
     public Item modifyItem(@PathVariable(value = "id") Long id, @Valid @RequestBody Item itemDetails) {
         Item item = itemRepository.findById(id)
-                .orElseThrow(() -> new ItemNotFoundException("Person", "id", id));
+                .orElseThrow(() -> new ItemNotFoundException("Item", "id", id));
 
         item.setName(itemDetails.getName());
         item.setPrice(itemDetails.getPrice());
@@ -34,9 +35,14 @@ public class ItemController {
 
     }
 
-    @DeleteMapping
-    public void deleteItem() {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Item> deleteItem(@PathVariable(value = "id") Long id) {
         // Todo: Implement function for deleting item
-        return;
+        Item item = itemRepository.findById(id)
+                .orElseThrow(() -> new ItemNotFoundException("Item", "id", id));
+        itemRepository.delete(item);
+        return ResponseEntity.ok().build();
+
+
     }
 }
