@@ -10,6 +10,7 @@ public class Item {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
     @NotNull
+    @Column(unique = true)
     private String name;
     @NotNull
     private String description;
