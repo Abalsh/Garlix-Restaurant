@@ -17,6 +17,9 @@ public class Orders {
     private int Total_price;
     private boolean takeaway = true;
 
+    @OneToOne(mappedBy = "orders")
+    private OrderItem orderitem;
+
     public long getId() {
         return id;
     }
