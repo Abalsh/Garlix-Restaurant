@@ -14,7 +14,7 @@ public class Orders {
     @NotNull
     private String Client_address;
 
-    private int Total_price;
+    private float Total_price;
     private boolean takeaway = true;
 
     @OneToOne(mappedBy = "orders")
@@ -32,7 +32,7 @@ public class Orders {
         return Client_address;
     }
 
-    public int getTotal_price() {
+    public float getTotal_price() {
         return Total_price;
     }
 
@@ -52,7 +52,7 @@ public class Orders {
         Client_address = client_address;
     }
 
-    public void setTotal_price(int total_price) {
+    public void setTotal_price(float total_price) {
         Total_price = total_price;
     }
 

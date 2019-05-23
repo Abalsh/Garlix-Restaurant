@@ -14,7 +14,7 @@ public class Item {
     private String name;
     @NotNull
     private String description;
-    private int price;
+    private float price;
     private boolean active=true;
 
     @OneToOne(mappedBy = "orders")
@@ -44,11 +44,11 @@ public class Item {
         this.description = description;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
