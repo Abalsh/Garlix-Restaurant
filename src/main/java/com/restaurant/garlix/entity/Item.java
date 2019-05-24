@@ -1,20 +1,27 @@
 package com.restaurant.garlix.entity;
 
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 
 @Entity
 public class Item {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "item_id")
     private long id;
     @NotNull
-    @Column(unique = true)
+    @Column(unique = true, name = "item_name")
     private String name;
     @NotNull
+    @Column(name = "item_description")
     private String description;
+    @Column(name = "item_price")
     private float price;
+    @Column(name = "item_status")
     private boolean active=true;
 
     @OneToOne(mappedBy = "orders")
