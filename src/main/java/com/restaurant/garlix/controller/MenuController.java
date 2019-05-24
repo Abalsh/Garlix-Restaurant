@@ -1,6 +1,7 @@
 package com.restaurant.garlix.controller;
 
 import com.restaurant.garlix.entity.Item;
+import com.restaurant.garlix.exception.ItemNotFoundException;
 import com.restaurant.garlix.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,11 @@ public class MenuController {
     public List<Item> getMenu() {
         // Todo: Implement function to get menu and return
         return itemRepository.findAll();
+    }
+    @GetMapping("/{id}")
+    public Item getItemById(@PathVariable(value = "id") Long id) {
+        return itemRepository.findById(id)
+                .orElseThrow(() -> new ItemNotFoundException("Item", "id", id));
     }
 
     @PostMapping
