@@ -1,11 +1,8 @@
 package com.restaurant.garlix.entity;
 
-
-import org.springframework.lang.Nullable;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
+
 
 @Entity
 public class Item {
@@ -22,7 +19,7 @@ public class Item {
     @Column(name = "item_price")
     private float price;
     @Column(name = "item_status")
-    private boolean active=true;
+    private boolean active;
 
     @OneToOne(mappedBy = "orders")
     private OrderItem orderitem;

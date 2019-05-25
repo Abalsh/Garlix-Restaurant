@@ -29,10 +29,10 @@ public class MenuController {
 
     @GetMapping
     public List<Item> getMenu() {
-        // Todo: Implement function to get menu and return
         return itemRepository.findAll();
     }
     @GetMapping("/{id}")
+    
     public Item getItemById(@PathVariable(value = "id") Long id) {
         return itemRepository.findById(id)
                 .orElseThrow(() -> new ItemNotFoundException("Item", "id", id));
