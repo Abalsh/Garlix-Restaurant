@@ -24,6 +24,9 @@ public class OrderItem {
     @NotNull
     private int quantity;
 
+    public OrderItem() {
+    }
+
     public OrderItem(Orders orders, Item item, @NotNull int quantity) {
         this.orders = orders;
         this.item = item;

@@ -17,6 +17,9 @@ public class User {
     @Column(name = "UniID")
     private String uniId;
 
+    public User() {
+    }
+
     public void setId(Long id) {
         this.id = id;
     }

@@ -24,6 +24,9 @@ public class Orders {
 
     transient private Map<Long, Integer> items = new HashMap<Long, Integer>();
 
+    public Orders() {
+    }
+
     public Orders(@NotNull String client_name, @NotNull String client_address, float total_price, boolean takeaway, Map<Long, Integer> items) {
         Client_name = client_name;
         Client_address = client_address;

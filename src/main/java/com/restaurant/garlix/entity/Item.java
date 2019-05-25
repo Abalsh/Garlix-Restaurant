@@ -24,6 +24,9 @@ public class Item {
     @OneToOne(mappedBy = "orders")
     private OrderItem orderitem;
 
+    public Item() {
+    }
+
     public long getId() {
         return id;
     }
