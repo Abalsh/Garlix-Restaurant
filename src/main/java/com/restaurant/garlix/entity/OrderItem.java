@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 public class OrderItem {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -23,5 +24,41 @@ public class OrderItem {
     @NotNull
     private int quantity;
 
+    public OrderItem(Orders orders, Item item, @NotNull int quantity) {
+        this.orders = orders;
+        this.item = item;
+        this.quantity = quantity;
+    }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Orders getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Orders orders) {
+        this.orders = orders;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }
