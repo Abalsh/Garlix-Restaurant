@@ -14,18 +14,21 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/v1/users")
 public class UserController {
+
     @Autowired
     UserRepository userRepository;
+
     @GetMapping
     public List<User> getUser() {
         return userRepository.findAll();
     }
-    @GetMapping("/{id}")
 
+    @GetMapping("/{id}")
     public User getUserById(@PathVariable(value = "id") Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User", "id", id));
     }
+
     @PostMapping
     public User createUser(@Valid @RequestBody User user) {
         return userRepository.save(user);
@@ -50,7 +53,6 @@ public class UserController {
                 .orElseThrow(() -> new UserNotFoundException("User", "id", id));
         userRepository.delete(user);
         return ResponseEntity.ok().build();
-
 
     }
 }
