@@ -28,8 +28,16 @@ public class MenuController {
     OrdersRepository ordersRepository;
 
     @GetMapping
-    public List<Item> getMenu() {
-        return itemRepository.findAll();
+    public List<Item> getMenu(@RequestParam("active") Boolean active) {
+        if (active == true){
+            return itemRepository.findByStatus(true);
+        }else if (active == false){
+            return itemRepository.findByStatus(false);
+        }else{
+            return itemRepository.findAll();
+        }
+        //return itemRepository.findByStatus(true);
+        //return itemRepository.findAll();
     }
     @GetMapping("/{id}")
     
