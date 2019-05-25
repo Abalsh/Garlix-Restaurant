@@ -1,5 +1,6 @@
 package com.restaurant.garlix.controller;
 
+import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import com.restaurant.garlix.entity.Item;
 import com.restaurant.garlix.entity.OrderItem;
 import com.restaurant.garlix.entity.Orders;
@@ -15,6 +16,7 @@ import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/v1/menu")
@@ -28,13 +30,13 @@ public class MenuController {
     OrdersRepository ordersRepository;
 
     @GetMapping
-    public List<Item> getMenu(@RequestParam("active") Boolean active) {
-        if (active == true){
-            return itemRepository.findByStatus(true);
-        }else if (active == false){
-            return itemRepository.findByStatus(false);
-        }else{
+    public List<Item> getMenu(@RequestParam(value = "active", required = false, defaultValue = "")  Boolean active) {
+        if (active == null){
             return itemRepository.findAll();
+        }else if (active == true){
+            return itemRepository.findByStatus(true);
+        }else {
+            return itemRepository.findByStatus(false);
         }
         //return itemRepository.findByStatus(true);
         //return itemRepository.findAll();
