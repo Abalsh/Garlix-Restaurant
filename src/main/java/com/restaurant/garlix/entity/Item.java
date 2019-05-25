@@ -22,7 +22,7 @@ public class Item {
     @Column(name = "item_status")
     private boolean active;
 
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private List<OrderItem> orderitems;
 
     public Item() {

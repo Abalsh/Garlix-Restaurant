@@ -4,6 +4,7 @@ import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class User {
@@ -16,6 +17,9 @@ public class User {
     private String userName;
     @Column(name = "UniID")
     private String uniId;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Orders> orders;
 
     public User() {
     }

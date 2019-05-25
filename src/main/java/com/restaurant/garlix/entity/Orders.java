@@ -12,10 +12,6 @@ public class Orders {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
-    @NotNull
-    private String Client_name;
-    @NotNull
-    private String Client_address;
 
     private float Total_price;
     private boolean takeaway = true;
@@ -23,16 +19,20 @@ public class Orders {
     @OneToMany(mappedBy = "orders")
     private List<OrderItem> orderitems;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn
+    private User user;
+
+    transient private Long user_id;
     transient private Map<Long, Integer> items = new HashMap<Long, Integer>();
 
     public Orders() {
     }
 
-    public Orders(@NotNull String client_name, @NotNull String client_address, float total_price, boolean takeaway, Map<Long, Integer> items) {
-        Client_name = client_name;
-        Client_address = client_address;
+    public Orders(float total_price, boolean takeaway, Long user_id, Map<Long, Integer> items) {
         Total_price = total_price;
         this.takeaway = takeaway;
+        this.user_id = user_id;
         this.items = items;
     }
 
@@ -42,22 +42,6 @@ public class Orders {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getClient_name() {
-        return Client_name;
-    }
-
-    public void setClient_name(String client_name) {
-        Client_name = client_name;
-    }
-
-    public String getClient_address() {
-        return Client_address;
-    }
-
-    public void setClient_address(String client_address) {
-        Client_address = client_address;
     }
 
     public float getTotal_price() {
@@ -82,6 +66,22 @@ public class Orders {
 
     public void setOrderitems(List<OrderItem> orderitems) {
         this.orderitems = orderitems;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
     }
 
     public Map<Long, Integer> getItems() {
