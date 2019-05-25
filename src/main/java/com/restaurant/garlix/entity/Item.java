@@ -2,6 +2,7 @@ package com.restaurant.garlix.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 
 @Entity
@@ -21,8 +22,8 @@ public class Item {
     @Column(name = "item_status")
     private boolean active;
 
-    @OneToOne(mappedBy = "orders")
-    private OrderItem orderitem;
+    @OneToMany(mappedBy = "item")
+    private List<OrderItem> orderitems;
 
     public Item() {
     }

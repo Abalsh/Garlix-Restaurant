@@ -4,6 +4,7 @@ package com.restaurant.garlix.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -19,8 +20,8 @@ public class Orders {
     private float Total_price;
     private boolean takeaway = true;
 
-    @OneToOne(mappedBy = "orders")
-    private OrderItem orderitem;
+    @OneToMany(mappedBy = "orders")
+    private List<OrderItem> orderitems;
 
     transient private Map<Long, Integer> items = new HashMap<Long, Integer>();
 
@@ -75,12 +76,12 @@ public class Orders {
         this.takeaway = takeaway;
     }
 
-    public OrderItem getOrderitem() {
-        return orderitem;
+    public List<OrderItem> getOrderitems() {
+        return orderitems;
     }
 
-    public void setOrderitem(OrderItem orderitem) {
-        this.orderitem = orderitem;
+    public void setOrderitems(List<OrderItem> orderitems) {
+        this.orderitems = orderitems;
     }
 
     public Map<Long, Integer> getItems() {
