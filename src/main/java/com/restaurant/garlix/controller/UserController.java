@@ -42,8 +42,7 @@ public class UserController {
         user.setUserName(userDetails.getUserName());
         user.setUniId(userDetails.getUniId());
 
-        User modifiedUser = userRepository.save(user);
-        return modifiedUser;
+        return userRepository.save(user);
 
     }
 
