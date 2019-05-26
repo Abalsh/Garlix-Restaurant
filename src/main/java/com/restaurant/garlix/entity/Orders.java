@@ -1,6 +1,8 @@
 package com.restaurant.garlix.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashMap;
@@ -17,6 +19,7 @@ public class Orders {
     private boolean takeaway = true;
 
     @OneToMany(mappedBy = "orders")
+    @JsonIgnore
     private List<OrderItem> orderitems;
 
     @ManyToOne(cascade = CascadeType.ALL)
