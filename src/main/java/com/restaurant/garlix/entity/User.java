@@ -1,5 +1,6 @@
 package com.restaurant.garlix.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class User {
     private String uniId;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Orders> orders;
 
     public User() {
